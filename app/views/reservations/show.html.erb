@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ユーザ:</strong>
+  <%= @reservation.userId %>
+</p>
+
+<p>
+  <strong>商品:</strong>
+  <%= @reservation.clothesId %>
+</p>
+
+<p>
+  <strong>返却予定日:</strong>
+  <%= @reservation.returnDay %>
+</p>
+
+<p>
+  <strong>配送日:</strong>
+  <%= @reservation.sendDay %>
+</p>
+
+<p>
+  <strong>配送先住所:</strong>
+  <%= @reservation.sendAdress %>
+</p>
+
+<%= link_to '編集', edit_reservation_path(@reservation) %> |
+<%= link_to '戻る', reservations_path %>

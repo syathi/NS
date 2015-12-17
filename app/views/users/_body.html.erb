@@ -1,0 +1,47 @@
+<table class="attr">
+ 
+  <tr>
+    <th>氏名</th>
+    <td><%= @user.name %></td>
+  </tr>
+
+   <tr>
+    <th>住所</th>
+    <td><%= @user.adress %></td>
+  </tr>
+   <tr>
+    <th>電話番号</th>
+    <td><%= @user.tel %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @user.email %></td>
+  </tr>
+   <tr>
+    <th>秘密の質問</th>
+
+     <% if @user.secret_question == 1 then %>
+       <td><%= "好きな食べ物" %></td>
+     <% elsif @user.secret_question == 2 then %>
+    
+        <td><%= "好きな場所" %></td>
+     <% elsif @user.secret_question == 3 then %>
+     
+        <td><%= "好きな映画" %></td>
+     <% elsif @user.secret_question == 4 then %>
+    
+        <td><%= "ペットの名前" %></td>
+     <% else  %>
+      <td><%= "好きな本" %></td>
+       <td><%= @user.secret_question %></td>
+     <% end %>
+   
+    
+  </tr>
+  <tr>
+    <th>秘密の答え</th>
+    <td><%= @user.secret_anser %></td>
+  </tr>
+ 
+ 
+</table>

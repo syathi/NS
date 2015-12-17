@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>商品名:</strong>
+  <%= @clothe.name %>
+</p>
+
+<p>
+  <strong>性別:</strong>
+  <%= @clothe.sex %>
+</p>
+
+<p>
+  <strong>サイズ:</strong>
+  <%= @clothe.size %>
+</p>
+
+<p>
+  <strong>カラー:</strong>
+  <%= @clothe.color %>
+</p>
+
+<p>
+  <strong>カテゴリ1:</strong>
+  <%= @clothe.category1 %>
+</p>
+
+<p>
+  <strong>カテゴリ2:</strong>
+  <%= @clothe.category2 %>
+</p>
+
+<p>
+  <strong>状態:</strong>
+  <%= @clothe.state %>
+</p>
+
+<p>
+  <strong>価格:</strong>
+  <%= @clothe.value %>
+</p>
+
+<p>
+  <strong>備考:</strong>
+  <%= @clothe.note %>
+</p>
+
+<%= link_to '編集', edit_clothe_path(@clothe) %> |
+<%= link_to '一覧', clothes_path %>

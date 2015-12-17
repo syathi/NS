@@ -1,0 +1,40 @@
+<table class="attr">
+<% @page_title = "秘密の質問です" %>
+<% if User.find_by(secret_anser: params[:anser]).present? then %>
+
+<tr>
+    <th>パスワードを再発行します</th>
+<HTML>
+<HEAD><TITLE>パスワードを再発行します</TITLE></HEAD>
+<BODY>
+
+
+<%= form_for @user ,url: :password, method: :get do |form| %>
+ <tr>
+    <th><%= form.label :password ,"パスワード"%></th>
+    <td><%= form.password_field :password %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :password_confirmation ,"パスワードの確認" %></th>
+    <td><%= form.password_field :password_confirmation %></td>
+  </tr>
+  <tr>
+    
+    <td><%= form.hidden_field :id , :value => @user.id%></td>
+    <!-- <td><%= form.hidden_field :id2 , :value => @user_id%></td>-->
+  </tr>
+
+ <tr>
+    <%= form.submit "登録する" %>
+  </tr>
+<% end %>
+<BR>
+
+ <% else  %>
+        <td><%= "秘密の質問の答えが違います" %></td>
+
+     <% end %>
+
+</FORM>
+</BODY>
+</HTML>

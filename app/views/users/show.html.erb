@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ユーザ名:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>住所:</strong>
+  <%= @user.adress %>
+</p>
+
+<p>
+  <strong>電話番号:</strong>
+  <%= @user.tel %>
+</p>
+
+<p>
+  <strong>メール:</strong>
+  <%= @user.mail %>
+</p>
+
+<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to '戻る', users_path %>

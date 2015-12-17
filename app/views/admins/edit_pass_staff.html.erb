@@ -1,0 +1,23 @@
+<h1>スタッフのパスワードを変更</h1>
+
+<%= form_for(@admin) do |f| %>
+<table>
+	<tr>
+		<td><%= f.label "前のパスワード:" %></td>
+		<td><%= f.password_field :staffPass %></td><!-- :adminPassをpassword属性とかにして照合出来るようにする -->
+
+	</tr>
+	<tr>
+		<td><%= f.label "新しいパスワード:" %></td>
+		<td><%= f.password_field :staffPass %></td>
+	</tr>
+	<tr>
+		<td><%= f.label "新しいパスワードの再入力:" %></td>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+	<tr>
+		<td><%= f.submit "変更" %></td>
+	</tr>
+</table>
+<% end %>
+<%= link_to "戻る", :admin_top %>

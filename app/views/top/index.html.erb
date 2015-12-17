@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+
+<table>
+	<tr>
+		<div id="header"><%= render "shared/header" %></div>
+  		<div id="sidebar"><%= render "shared/sidebar" %></div>
+		<td><%= render "shared/search_form" %></td>
+		<td><div id="login_form"><%= render "shared/login_form" %></div></td>
+	</tr>
+</table>
+
+
+<% 1.times do |x| %>
+<h1>おすすめ商品</h1>
+<p>これらの商品がお勧めです</p>
+<%= image_tag("cloth1.jpg", size: "150x150", alt: "Morning Glory") %>
+<%= image_tag("cloth2.jpg", size: "150x150", alt: "Morning Glory") %>
+<%= image_tag("cloth3.jpg", size: "150x150", alt: "Morning Glory") %>
+<%= image_tag("cloth4.jpg", size: "150x150", alt: "Morning Glory") %>
+<%= image_tag("cloth5.jpg", size: "150x150", alt: "Morning Glory") %>
+<%= image_tag("cloth6.jpg", size: "150x150", alt: "Morning Glory") %>
+<!--<%= link_to "もっと読む", "#" %>--></p>
+<!--<h2>見出し</h2>
+<p>ここに本文が入ります。ここに本文が入ります。ここに本文が入ります。ここに本文が入ります。
+<%= link_to "もっと読む", "#" %></p>
+-->
+<% end %>

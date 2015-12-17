@@ -1,0 +1,19 @@
+<p>管理者はここからログインして下さい</p>
+
+<%= form_tag(:admin_sessions) do %>
+<table>
+	<tr>
+		<td style="">パスワード:</td>
+		<td><%= password_field_tag "password", "", style:"width: 120px" %></td>
+	</tr>
+	<tr>
+		<td><%= submit_tag "ログイン" %></td>
+	</tr>
+</table>
+<% end %>
+
+<p>とりあえずログイン実装まではこっちから</p>
+↓
+<p><%= link_to "login", admin_top_path %></p>
+<p><%= link_to "パスワードを忘れた場合", secret_ques_admin_path %></p>
+

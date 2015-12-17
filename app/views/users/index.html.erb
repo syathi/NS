@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ユーザ一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザ名</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>メール</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.adress %></td>
+        <td><%= user.tel %></td>
+        <td><%= user.mail %></td>
+        <td><%= link_to '詳細', user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

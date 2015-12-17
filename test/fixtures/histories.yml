@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userId: 1
+  clothesId: 1
+  returnDay: 2015-12-12
+  sendDay: 2015-12-12
+  sendAdress: MyString
+  isSend: false
+
+two:
+  userId: 1
+  clothesId: 1
+  returnDay: 2015-12-12
+  sendDay: 2015-12-12
+  sendAdress: MyString
+  isSend: false

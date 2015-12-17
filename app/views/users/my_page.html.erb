@@ -1,0 +1,38 @@
+<% @page_title = "マイページ" %>
+
+<h1><%= @page_title %></h1>
+
+<p>ここに予約情報が入ります
+</p>
+
+<!--<%= button_to current_user.name + "さんのアカウント確認", :account %> |-->
+ 
+
+<!--<p><%= button_to "アカウント情報の編集", :edit_account %></p>-->
+
+
+<form  method "get" action= account class="button-to">
+
+       <div><input type="submit" value="アカウント確認" /></div></form>
+
+ <form method "get" action= "account/edit" class="button-to">
+
+       <div><input type="submit" value="アカウント編集" /></div></form>
+
+ <%= button_to "削除", :account, method: :delete,
+            data: { confirm: "本当に削除しますか?" } %>
+
+    <!--   <div><input type="submit" value="アカウント削除" /></div></form>-->
+
+<form method "get" action= login class="button-to">
+
+       <div><input type="submit" value="予約履歴" /></div></form>
+
+ 
+<!--<form method "get" action="/delete_account" class="button-to">
+
+       <div><input type="submit" value="アカウント削除" /></div></form>
+
+<form method "get" action="/history" class="button-to">yo
+
+       <div><input type="submit" value="履歴" /></div></form>-->
