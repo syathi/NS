@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(version: 20151211182318) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "password"
+    t.string   "hashed_password"
     t.string   "adress"
     t.string   "tel"
     t.string   "mail"
     t.string   "secretques"
     t.string   "secretans"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "isFreeze"
   end
 

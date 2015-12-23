@@ -1,12 +1,12 @@
-<%= image_tag("RentalClothes.png", size: "375x150", alt: "RentalClothes") %>
+<%= image_tag("RentalClothes.png", size: "420x130", alt: "RentalClothes") %>
 
-<!--<#% if current_user %>
+<% if current_user %>
 <p class="user">
-<#%= current_user.name %>さん |
-<#%= link_to "ログアウト", :session,
+<%= current_user.name %>さん |
+<%= link_to "ログアウト", :session,
       method: :delete, data: { confirm: "ログアウトしますか？" } %>
 </p>
-<#% end %>-->
+<% end %>
 
 <div class="menubar">
 <%= menu_link_to "TOP", :root %>

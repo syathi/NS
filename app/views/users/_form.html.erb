@@ -1,6 +1,6 @@
 
 <table class="attr">
- 
+<%= form_for @user do |form| %>
   <tr>
     <th><%= form.label :name, "氏名" %></th>
     <td><%= form.text_field :name %></td>
@@ -14,17 +14,17 @@
     <td><%= form.text_field :tel %></td>
   </tr>
   <tr>
-    <th><%= form.label :email, "メールアドレス" %></th>
-    <td><%= form.text_field :email %></td>
+    <th><%= form.label :mail, "メールアドレス" %></th>
+    <td><%= form.text_field :mail %></td>
   </tr>
    <tr>
-   <th><%= form.label :secret_question, "秘密の質問" %></th>
+   <th><%= form.label :secretques, "秘密の質問" %></th>
     <td> <% options = [["好きな食べ物",1],["好きな場所",2],["好きな映画",3],["ペットの名前",4],["好きな本",5]] %>
-    <%= form.select :secret_question, options %></td>
+    <%= form.select :secretques, options %></td>
   </tr>
   <tr>
-    <th><%= form.label :secret_anser, "秘密の答え" %></th>
-    <td><%= form.text_field :secret_anser %></td>
+    <th><%= form.label :secretans, "秘密の答え" %></th>
+    <td><%= form.text_field :secretans %></td>
   </tr>
 
   <tr>
@@ -37,6 +37,8 @@
   </tr>
 </table>
 
-<% unless @user.new_record? %>
-<p>パスワードを変更しないときは、パスワード入力欄を空にしてください。</p>
+  <% unless @user.new_record? %>
+    <p>パスワードを変更しないときは、パスワード入力欄を空にしてください。</p>
+  <% end %>
+  <p><%= form.submit %></p>
 <% end %>

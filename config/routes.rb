@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :users do
   	member{ get "freeze"} #アカウント凍結
   end
-  resource :session
+  resource :session, only: [:create, :destroy, :edit]
 
   resources :clothes do
   	member { get "recommend" } #お勧めボタン

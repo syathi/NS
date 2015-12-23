@@ -10,8 +10,10 @@ answers = %w(ピザ 寿司 パフェ)
 		name: "#{fnames[idx % 4]} #{gnames[idx % 3]}",
 		adress: "#{prefecture[idx % 4]}県#{city[idx % 3]}市#{town[idx % 5]}町",
 		tel: "090-0000-000" + idx.to_s,
-		mail: "example@gmail.com",
+		mail: "example" + idx.to_s + "@gmail.com",
 		secretques: "好きな食べ物は?",
 		secretans: answers[idx % 3],
+		password: "password",
+		password_confirmation: "password"
 	)
 end

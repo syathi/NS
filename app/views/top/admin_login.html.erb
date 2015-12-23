@@ -5,15 +5,15 @@
 	<tr>
 		<td style="">パスワード:</td>
 		<td><%= password_field_tag "password", "", style:"width: 120px" %></td>
+		<%= notice %>
 	</tr>
 	<tr>
 		<td><%= submit_tag "ログイン" %></td>
 	</tr>
 </table>
 <% end %>
-
-<p>とりあえずログイン実装まではこっちから</p>
+<!-- <p>とりあえずログイン実装まではこっちから</p>
 ↓
-<p><%= link_to "login", admin_top_path %></p>
+<p><#%= link_to "login", admin_top_path %></p> -->
 <p><%= link_to "パスワードを忘れた場合", secret_ques_admin_path %></p>
 

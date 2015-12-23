@@ -1,29 +1,37 @@
 class AdminsController < ApplicationController
-	before_action :set_admin, only: [:edit_pass, :edit_pass_staff, :update]
+	before_action :set_admin, only: [:edit_pass, :edit_pass_staff, :update, :show]
 
-  def edit_pass
+  def show
   end
 
-  def edit_pass_staff
-  end
+	def edit_pass
+    sss
+	end
 
-  def update
-    respond_to do |format|
-      if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'admin was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin.errors, status: :unprocessable_entity }
-      end
+	def edit_pass_staff
+	end
+
+	def update
+
+    if @admin.update(admin_params)
+      redirect_to admin_top_path, notice: '更新しました。'
+      #format.json { render :show, status: :ok, location: @admin }
+    else
+      render admin_top_path, notice: '入力に誤りがあります'
+      #format.json { render json: @admin.errors, status: :unprocessable_entity }
     end
   end
 
-  def secret_ques
-  end
+  	def secret_ques
+  	end
 
-  private
+  	private
   	def set_admin
   		@admin = Admin.find(1)
   	end
+    
+    def admin_params
+      params[:admin].permit(:adminPass, :staffPass, :secretQues, :secretAns)
+    end
 end
+

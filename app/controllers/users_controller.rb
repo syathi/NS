@@ -16,11 +16,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    att = user_params.permit(:name, :password, :tel, :mail, :adress, :secretans, :secretques)
+    @user = User.new(att)
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'user was successfully created.' }
+        format.html { redirect_to :root, notice: 'user was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

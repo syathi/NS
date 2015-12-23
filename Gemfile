@@ -41,5 +41,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'awesome_print', require: 'ap' #オブジェクトを見やすく出力してくれるやつ
+  gem 'pry-rails', group: :development #rails consoleを任意のタイミングで起動してくれるやつ
+  gem 'quiet_assets', group: :development #うざいログを消してくれるやつ
+  gem 'meta_request', group: :development #developer toolにrailsのタブを召還
+  gem 'peek', group: :development #viewで処理の中身を表示してくれるやつ
+  gem 'better_errors', group: :development #つよいエラー表示のやつ
+
 end
 
