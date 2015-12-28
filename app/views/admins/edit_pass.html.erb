@@ -8,11 +8,11 @@
 	</tr>
 	<tr>
 		<td><%= f.label "新しいパスワード:" %></td>
-		<td><%= f.password_field :password %></td>
+		<td><%= password_field :admin :new_password %></td>
 	</tr>
 	<tr>
 		<td><%= f.label "新しいパスワードの再入力:" %></td>
-		<td><%= f.password_field :password_confirmation %></td>
+		<td><%= password_field :admin :new_password_confirmation %></td>
 	</tr>
 	<tr>
 		<td><%= f.submit "変更" %></td>

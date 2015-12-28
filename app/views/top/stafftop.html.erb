@@ -1,4 +1,5 @@
 <h2>スタッフTOP</h2>
 <li><%= link_to '未発送商品一覧', unsend_reservations_path %></li>
 <li><%= link_to '未返却商品一覧', unreturn_reservations_path %></li>
-<li><%= link_to 'TOP', :root %></li>
+<li><%= link_to "TOP", :session,
+      	method: :delete, data: { confirm: "ログアウトしますか？" } %></li>

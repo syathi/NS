@@ -1,21 +1,18 @@
 class Admin < ActiveRecord::Base
-	validates :password, presence: {on: :create },
-			 confirmation: { allow_blank: true}
-	#validates :password_new, presence: {on: :create},
-	#		  confirmation: { allow_blank: true}
-
+	validates :password, presence: {on: :create }, confirmation: { allow_blank: true}
+	#validates :new_password, presence: {on: :update }, confirmation: true
+	validates_confirmation_of :new_password #_confirmationがつく疑似カラムを召還する
+	
 	attr_accessor :password, :password_confirmation
-	#attr_accessor :staff_password, :staff_password_confirmation
-	#attr_accessor :password_new, :password_new_confirmation
+	attr_accessor :new_password
 
 	def password=(val)#パスワードを暗号化するメソッド
 		if val.present?
 			self.adminPass = BCrypt::Password.create(val)
-			#self.staffPass = BCrypt::Password.create(staff)
 		end
 		@password = val
 	end
-	
+
 	class << self
 		def authenticate(password)
 			admin = Admin.find(1)
@@ -27,4 +24,5 @@ class Admin < ActiveRecord::Base
 			end
 		end
 	end
+
 end

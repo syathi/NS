@@ -1,0 +1,16 @@
+<p>スタッフはここからログインして下さい</p>
+
+<%= form_tag(:staff_session) do %>
+<table>
+	<tr>
+		<td style="">パスワード:</td>
+		<td><%= password_field_tag "password", "", style:"width: 120px" %></td>
+		<%= notice %>
+	</tr>
+	<tr>
+		<td><%= submit_tag "ログイン" %></td>
+	</tr>
+</table>
+<% end %>
+
+

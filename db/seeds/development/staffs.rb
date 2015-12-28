@@ -1,0 +1,1 @@
+Staff.create(password: "staff")

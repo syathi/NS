@@ -1,12 +1,13 @@
 <p><%= notice %></p>
 <h1>管理者ページ</h1>
 <p>
-	<%= link_to "TOP", :root %>
+	<%= link_to "TOP", :session,
+      	method: :delete, data: { confirm: "ログアウトしますか？" } %>
 	<%= link_to '商品を追加する', new_clothe_path %>
 	<%= link_to "商品一覧", :clothes %>
 	<%= link_to "延滞商品一覧", delay_reservations_path %>
 	<%= link_to "ユーザ一覧", :users %>
 	<%= link_to "管理者パスワード変更", edit_pass_admin_path %>
-	<%= link_to "スタッフパスワード変更", edit_pass_staff_admin_path %>
+	<%= link_to "スタッフパスワード変更", edit_staff_path(Staff.find(1)) %>
 </p>
 <p>Find me in app/views/admin_top/index.html.erb</p>
