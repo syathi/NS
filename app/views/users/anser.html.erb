@@ -1,16 +1,17 @@
 <table class="attr">
 <% @page_title = "秘密の質問です" %>
-<% if User.find_by(secret_anser: params[:anser]).present? then %>
+<% if User.find_by(secretans: params[:anser]).present? then %>
+<% @user = User.find_by(secretans: params[:anser]) %>
 
-<tr>
-    <th>パスワードを再発行します</th>
 <HTML>
 <HEAD><TITLE>パスワードを再発行します</TITLE></HEAD>
 <BODY>
 
-
-<%= form_for @user ,url: :password, method: :get do |form| %>
- <tr>
+<tr>
+    <th>パスワードを再発行します</th>
+</tr>
+<%= form_for @user do |form| %>
+  <tr>
     <th><%= form.label :password ,"パスワード"%></th>
     <td><%= form.password_field :password %></td>
   </tr>
@@ -19,7 +20,6 @@
     <td><%= form.password_field :password_confirmation %></td>
   </tr>
   <tr>
-    
     <td><%= form.hidden_field :id , :value => @user.id%></td>
     <!-- <td><%= form.hidden_field :id2 , :value => @user_id%></td>-->
   </tr>

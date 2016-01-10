@@ -1,0 +1,22 @@
+<%= render "shared/header" %>
+<% if @params then%>
+<h2>検索の結果</h2>
+
+<table>
+<tbody>
+  <% @clothes.each do |clothe| %>
+    <% if (clothe.category1==@category1 or @category1== "") and (clothe.category2 == @category2  or @category2== "")and (clothe.size == @size or @size== "")and (clothe.sex == @sex or @sex== "") %>
+      <tr><td><%= link_to(clothe_image_tag(clothe, width: 96), clothe_path(clothe)) %></td></tr>
+      <tr><td><%= link_to(clothe.name, clothe_path(clothe)) %></td></tr>
+      <!--<tr><td><#%= link_to "予約する", new_reservation_path(clothe: clothe) %></td>
+      	  <td><#%= link_to "カートに入れる", new_cart_path(clothe: clothe)%></tr>-->
+      <% @not_exist = false %>
+    <% end %>  
+  <% end %>
+</tbody>
+</table>
+<% end %>
+<% if @not_exist %>
+  <p>見つかりませんでした</p>
+<% end %>
+<!-- -->

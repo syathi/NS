@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	belongs_to :reservation
+	belongs_to :cart
 	validates :password, presence: { on: :create },
 		confirmation: {allow_blank: true}
 		

@@ -4,7 +4,10 @@
   <strong>商品名:</strong>
   <%= @clothe.name %>
 </p>
-
+<p>
+  <strong>画像:</strong>
+  <%= clothe_image_tag @clothe, width: 96 %>
+</p>
 <p>
   <strong>性別:</strong>
   <%= @clothe.sex %>
@@ -45,5 +48,11 @@
   <%= @clothe.note %>
 </p>
 
-<%= link_to '編集', edit_clothe_path(@clothe) %> |
-<%= link_to '一覧', clothes_path %>
+<!--<#%= link_to '編集', edit_clothe_path(@clothe) %> |
+<#%= link_to '一覧', clothes_path %>-->
+<% if current_user.present? && !current_user.isFreeze && !@clothe.isLent %>
+<%= link_to 'カートに入れる', carts_path(cart: {clothe_id: @clothe.id, user_id: current_user.id}), method: :post %>
+<% end %>
+<% if @clothe.isLent %>
+<p>貸出中</p>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228164800) do
+ActiveRecord::Schema.define(version: 20160105172611) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "adminPass"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20151228164800) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "userId"
-    t.integer  "ClothesId"
+    t.integer  "user_id"
+    t.integer  "clothe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20151228164800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "clothe_images", force: :cascade do |t|
+    t.integer  "clothe_id",    null: false
+    t.binary   "data"
+    t.string   "content_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "clothe_images", ["clothe_id"], name: "index_clothe_images_on_clothe_id"
 
   create_table "clothes", force: :cascade do |t|
     t.string   "name"
@@ -64,6 +74,8 @@ ActiveRecord::Schema.define(version: 20151228164800) do
   end
 
   create_table "reservations", force: :cascade do |t|
+    t.integer  "clothe_id"
+    t.integer  "user_id"
     t.integer  "userId"
     t.integer  "clothesId"
     t.date     "returnDay"
@@ -73,6 +85,9 @@ ActiveRecord::Schema.define(version: 20151228164800) do
     t.boolean  "isSend"
     t.string   "sendAdress"
   end
+
+  add_index "reservations", ["clothe_id"], name: "index_reservations_on_clothe_id"
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
 
   create_table "staffs", force: :cascade do |t|
     t.string   "staff_pass"

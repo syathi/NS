@@ -1,6 +1,5 @@
 
 <table class="attr">
-<%= form_for @user do |form| %>
   <tr>
     <th><%= form.label :name, "氏名" %></th>
     <td><%= form.text_field :name %></td>
@@ -40,5 +39,3 @@
   <% unless @user.new_record? %>
     <p>パスワードを変更しないときは、パスワード入力欄を空にしてください。</p>
   <% end %>
-  <p><%= form.submit %></p>
-<% end %>

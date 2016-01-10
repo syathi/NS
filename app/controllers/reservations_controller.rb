@@ -9,14 +9,18 @@ class ReservationsController < ApplicationController
   end
 
   def new
+    @carts = Cart.where(user_id: current_user.id)
     @reservation = Reservation.new
   end
 
   def create
-    @reservation = Reservation.new(reseravation_params)
-
+    params[:reservation][:isSend] = false
+    @reservation = Reservation.new(reservation_params)
+    @clothe = Clothe.find(params[:reservation][:clothesId]) 
     respond_to do |format|
       if @reservation.save
+        @clothe.update({:isLent => true})
+        Cart.where("user_id = ?", params[:reservation][:userId]).destroy_all
         format.html { redirect_to @reservation, notice: '登録しました' }
         format.json { render :show, status: :created, location: @reservation }
       else
@@ -27,6 +31,8 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @clothe = Clothe.find(params[:reservation][:clothesId])
+    @clothe.update({:isLent => false})
     @reservation.destroy
     respond_to do |format|
       format.html { redirect_to reservation_url, notice: '削除しました' }
@@ -81,6 +87,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params[:reservation].permit(:userId, :clothesId, :returnDay, :sendDay, :isSend)
+      params[:reservation].permit(:userId, :clothesId, :returnDay, :sendDay, :isSend, :sendAdress)
     end
 end

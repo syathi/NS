@@ -1,37 +1,64 @@
-<%= form_for(@reservation) do |f| %>
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-      <ul>
-      <% @reservation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :userId %><br>
-    <%= f.number_field :userId %>
+<table class="attr">
+ <%= form.hidden_field :userId, :value => current_user.id %>
+
+  <!--<div class="field">
+    <%= form.label :userId %><br>
+    <%= form.number_field :userId %>
   </div>
   <div class="field">
-    <%= f.label :clothesId %><br>
-    <%= f.number_field :clotheId %>
+    <%= form.label :clothesId %><br>
+    <%= form.number_field :clothesId %>
+  </div>-->
+   <span style="display:none;"><%= clothe_id = "" %></span>
+ <% @carts.each do |cart| %>
+     
+    <!--<td><%=cart.clothe_id%></td>
+    <td><%=cart.user_id%></td>-->
+    <%clothe = Clothe.find_by(id: cart.clothe_id)%>
+     <% if cart.user_id ==  User.find_by(name: current_user.name).id %>
+     <tr>
+    <th>画像</th>
+    <td><%= clothe_image_tag clothe, width: 96 %></td>
+    </tr>
+
+        <td><%= clothe.name %></td>
+        <td><%= clothe.sex %></td>
+        <td><%= clothe.size %></td>
+        <td><%= clothe.color %></td>
+        <td><%= clothe.category1 %></td>
+        <td><%= clothe.category2 %></td>
+        <td><%= clothe.state %></td>
+        <td><%= clothe.value %></td>
+        <td><%= clothe.note %></td>
+             <% if clothe_id != "" %>
+             <span style="display:none;"><%= clothe_id +=" " %></span>
+             <% end %>
+             <span style="display:none;"><%= clothe_id +=clothe.id.to_s %></span>
+             
+      <tr>
+         <% end %>
+        <% end %>
+
+<%= form.hidden_field :clothesId, :value => clothe_id%>
+
+ <div class="field">
+    <%= form.label :returnDay %><br>
+    <%= form.date_select :returnDay %>
   </div>
   <div class="field">
-    <%= f.label :returnDay %><br>
-    <%= f.date_select :returnDay %>
+    <%= form.label :sendDay %><br>
+    <%= form.date_select :sendDay %>
   </div>
   <div class="field">
-    <%= f.label :sendDay %><br>
-    <%= f.date_select :sendDay %>
+    <%= form.label :sendAdress %><br>
+    <%= form.text_field :sendAdress %>
   </div>
-  <div class="field">
-    <%= f.label :sendAdress %><br>
-    <%= f.text_field :sendAdress %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<p><%= form.submit %></p>
+</div>
+
+  </table>
+

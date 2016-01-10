@@ -17,22 +17,33 @@
   </div>
   <div class="field">
     <%= f.label "性別" %><br>
-    <%= f.number_field :sex %>
+    <%= f.label "男性" %><%= f.radio_button :sex, 0 %>
+    <%= f.label "女性" %><%= f.radio_button :sex, 1 %>
+    <%= f.label "男児" %><%= f.radio_button :sex, 2 %>
+    <%= f.label "女児" %><%= f.radio_button :sex, 3 %>
+
   </div>
   <div class="field">
     <%= f.label "サイズ" %><br>
-    <%= f.text_field :size %>
+    S,M,L以外のサイズ表記を用いる場合はこちら<br>
+    <%= f.text_field :size %><br>
+    <%= f.label "S" %><%= f.radio_button :size, "S" %>
+    <%= f.label "M" %><%= f.radio_button :size, "M" %>
+    <%= f.label "L" %><%= f.radio_button :size, "L" %>
   </div>
   <div class="field">
     <%= f.label "カラー" %><br>
     <%= f.text_field :color %>
   </div>
   <div class="field">
-    <%= f.label "カテゴリ1" %><br>
-    <%= f.text_field :category1 %>
+    <%= f.label "カテゴリ1(季節)" %><br>
+    <%= f.label "春" %><%= f.radio_button :category1, "春" %>
+    <%= f.label "夏" %><%= f.radio_button :category1, "夏" %>
+    <%= f.label "秋" %><%= f.radio_button :category1, "秋" %>
+    <%= f.label "冬" %><%= f.radio_button :category1, "冬" %>
   </div>
   <div class="field">
-    <%= f.label "カテゴリ2" %><br>
+    <%= f.label "カテゴリ2(シチュエーション)" %><br>
     <%= f.text_field :category2 %>
   </div>
   <div class="field">

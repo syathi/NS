@@ -1,0 +1,18 @@
+<%= render "shared/header" %>
+<% if !@clothes.present? && @word.present? then%>
+	<p> <%= @word %> は見つかりませんでした</p>
+<% end %>
+
+<% if @clothes.present? && @word.present? then %>
+<p> <%= @word %> の検索結果</p>
+<table>
+<tbody>
+  <% @clothes.each do |clothe| %>
+      <tr><td><%= clothe_image_tag clothe, width: 96 %></td></tr>
+      <tr><td><%= clothe.name %></td></tr>
+      <!--<tr><td><#%= link_to "予約する", new_reservation_path(clothe: clothe) %></td>
+      	  <td><#%= link_to "カートに入れる", new_cart_path(clothe: clothe)%></tr> -->
+  <% end %>
+</tbody>
+</table>
+<% end %>

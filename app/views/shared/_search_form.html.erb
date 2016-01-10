@@ -1,14 +1,16 @@
 
 <h2>検索</h2>
+<%= form_tag :search_clothes, method: :get do %>
 <table id="search_form">
-<tr>
-<td style="text-align: right">キーワード：</td>
-<td><input type="text" size="16" style="width: 240px" /></td>
-</tr>
-<tr>
-<td colspan="2" style="text-align: center">
-<input type="submit" value="検索" /></td>
-</tr>
+	<tr>
+		<td style="text-align: right">キーワード：</td>
+		<td><%= text_field_tag "q", params[:q] %></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center">
+		<%= submit_tag "検索" %></td>
+	</tr>
 </table>
+<% end %>
 
 

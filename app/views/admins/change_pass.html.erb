@@ -1,0 +1,18 @@
+<h1>管理者のパスワードを変更</h1>
+
+<%= form_for(@admin, url: {controller: :admins, action: :update_pass}) do |f| %>
+<table>
+	<tr>
+		<td>新しいパスワード:</td>
+		<td><%= f.password_field :new_password %></td>
+	</tr>
+	<tr>
+		<td>新しいパスワードの再入力:</td>
+		<td><%= f.password_field :new_password_confirmation %></td>
+	</tr>
+	<tr>
+		<td><%= f.submit "変更" %></td>
+	</tr>
+</table>
+<% end %>
+<%= link_to "ログインフォームへ", :admin_login %>

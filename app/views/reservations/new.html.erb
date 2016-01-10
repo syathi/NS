@@ -1,5 +1,10 @@
-<h1>New Reservation</h1>
+<%= render "shared/header" %>
+<h1>予約する</h1>
 
-<%= render 'form' %>
+<%= form_for @reservation do |form| %>
+<%= render 'form' ,form: form%>
 
+
+
+<% end %>
 <%= link_to '戻る', reservations_path %>

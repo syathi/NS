@@ -1,0 +1,56 @@
+<%= render "shared/header" %>
+<p id="notice"><%= notice %></p>
+
+<h1>カートにいれた商品一覧</h1>
+
+<table>
+   <thead>
+    <tr>
+      <th>商品名</th>
+      <th>性別</th>
+      <th>サイズ</th>
+      <th>カラー</th>
+      <th>カテゴリ1</th>
+      <th>カテゴリ2</th>
+      <th>State</th>
+      <th>価格</th>
+      <th>備考</th>
+       <th>お勧め</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <span style="display:none;"><%= total = 0  %></span>
+    <% @carts.each do |cart| %>
+     
+    <!--<td><%=cart.clothe_id%></td>
+    <td><%=cart.user_id%></td>-->
+    <% clothe = Clothe.find_by(id: cart.clothe_id)%>
+    <!--<#% binding.pry %>-->
+     <% if cart.user_id ==  User.find_by(name: current_user.name).id %>
+    <tr>
+        <th>画像</th>
+        <td><%= clothe_image_tag clothe, width: 96 %></td>
+    </tr>
+
+        <td><%= clothe.name %></td>
+        <td><%= clothe.sex %></td>
+        <td><%= clothe.size %></td>
+        <td><%= clothe.color %></td>
+        <td><%= clothe.category1 %></td>
+        <td><%= clothe.category2 %></td>
+        <td><%= clothe.state %></td>
+        <td><%= clothe.value %></td>
+        <td><%= clothe.note %></td>
+       
+      
+         <span style="display:none;"><%= total +=clothe.value %></span>
+      <tr>
+      <% end %>
+
+    <tr>
+        <td><%= link_to '削除', cart, method: :delete, data: { confirm: '本当に消しますか?' } %></td>
+     <% end %>
+    <h2><%= total %></h2>
+<%= link_to '注文処理に進む', new_reservation_path %>

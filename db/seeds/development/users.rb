@@ -13,6 +13,7 @@ answers = %w(ピザ 寿司 パフェ)
 		mail: "example" + idx.to_s + "@gmail.com",
 		secretques: "好きな食べ物は?",
 		secretans: answers[idx % 3],
+		isFreeze: false,
 		password: "password",
 		password_confirmation: "password"
 	)

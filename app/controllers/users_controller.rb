@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_users, only: [:show, :edit, :update, :destroy]
+  before_action :set_users, only: [:show, :edit, :update, :destroy, :freeze]
 
   def index
     @users = User.all
@@ -51,14 +51,36 @@ class UsersController < ApplicationController
   end
 
   def freeze #trueで凍結、falseで凍結じゃない
-    if @user.freeze then
-      @user.update({:freeze => 0})
+    if @user.isFreeze then
+      @user.update({:isFreeze => 0})
       redirect_to delay_reservations_path, notice: "凍結解除しました"
     else
-      @user.update({:freeze => 1})
+      @user.update({:isFreeze => 1})
       redirect_to delay_reservations_path, notice: "凍結しました"
     end
   end
+
+  # 検索
+  def search
+ 
+  end
+
+
+  # 会員の秘密の質問
+  def secret_question
+
+  end
+
+  # 会員の秘密の質問
+  def secret
+  end
+
+  def anser
+  end
+
+  def password
+  end
+    
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -68,6 +90,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params[:user]
+      params[:user].permit(:name, :hashed_password, :adress, :tel, :mail, :secretans, :secretques, :isFreeze)
     end
+  
 end

@@ -6,7 +6,13 @@ class ClothesController < ApplicationController
   end
 
   def show
+    @reservations = Reservation.where("isRent = true")
     @clothe = Clothe.find(params[:id])
+    if params[:format].in?(["jpg", "png", "gif"])
+      send_image
+    else
+      render "show"
+    end
   end
 
   def new
@@ -15,7 +21,7 @@ class ClothesController < ApplicationController
 
   def edit
   end
-
+ 
   def create
     @clothe = Clothe.new(clothe_params)
 
@@ -60,6 +66,11 @@ class ClothesController < ApplicationController
       end
   end
 
+  def search
+    @word = params[:q]
+    @clothes = Clothe.search(params[:q])
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clothes
@@ -69,5 +80,15 @@ class ClothesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def clothe_params
       params[:clothe].permit(:name, :sex, :size, :color, :category1, :category2, :state, :value, :note, :recommend, :isLent)
+    end
+
+    def send_image
+      if @clothe.images.present?
+        #@clothe_image = @clothe.images.find(@clothe.images)
+        send_data @clothe.images.data, 
+                  type: @clothe.images.content_type, disposition: "inline"
+      else
+        raise NotFound
+      end
     end
 end

@@ -1,35 +1,57 @@
 
+<%= form_tag({ :controller => 'top', :action => 'search2' }, { :method => :get, :id => 'fm' }) do %>
+
+<h2>カテゴリー</h2>
+<p>ドレス<%= radio_button 'page', 'category1', 'ドレス', {} %>　</p>
+<p>浴衣　<%= radio_button 'page', 'category1', '浴衣', {}  %>　</p>
+<p>スーツ<%= radio_button 'page', 'category1', 'スーツ', {} %>　</p>
+<p>コート<%= radio_button 'page', 'category1', 'コート', {} %>　</p>
+<HR size=1 color="green">
+<p>未選択<%= radio_button 'page', 'category1' , "", {checked: true} %></p>
 
 
-<h2>イベント</h2>
-<ul>
 
-<p><input type="radio" name="q1" value="はい"> 結婚式</p>
-<p><input type="radio" name="q1" value="いいえ"> 葬式</p>
-<p><input type="radio" name="q1" value="どちらでもない"> 七五三</p>
-<p><input type="radio" name="q1" value="どちらでもない"> 職場</p>
- 
-</ul>
+<br>
+<br>
+ <h2>シチュエーション</h2>
 
-<h2>服を選ぶ</h2>
-<ul>
-<p><input type="radio" name="q2" value="はい"> ドレス</p>
-<p><input type="radio" name="q2" value="いいえ"> スーツ</p>
-<p><input type="radio" name="q2" value="どちらでもない"> 浴衣</p>
-<p><input type="radio" name="q2" value="どちらでもない"> コート</p>
- 
-</ul>
+<p>結婚式<%= radio_button 'page', 'category2', '結婚式', {} %>　</p>
+<p>七五三<%= radio_button 'page', 'category2', '七五三', {}  %>　</p>
+<p>職場　<%= radio_button 'page', 'category2', '職場', {} %>　</p>
+<p>葬式　<%= radio_button 'page', 'category2', '葬式', {} %></p>
+<HR size=1 color="green">
+<p>未選択<%= radio_button 'page', 'category2' , "", {checked: true} %></p>
 
+
+
+
+<br>
+<br>
 <h2>性別</h2>
-<p><input type="radio" name="q3" value="はい"> 男</p>
-<p><input type="radio" name="q3" value="いいえ"> 女</p>
-<p><input type="radio" name="q3" value="どちらでもない"> 男子</p>
-<p><input type="radio" name="q3" value="どちらでもない"> 女子</p>
-</p>
+<p>男　　<%= radio_button 'page', 'sex',0, {} %>　</p>
+<p>女　　<%= radio_button 'page', 'sex',1, {}  %>　</p>
+<p>男子　<%= radio_button 'page', 'sex',2, {} %>　</p>
+<p>女子　<%= radio_button 'page', 'sex',3, {} %>　</p>
+<HR size=1 color="green">
+<p>未選択<%= radio_button 'page', 'sex' , "", {checked: true} %></p>
 
-<h2>大きさ</h2>
-<p><input type="radio" name="q3" value="はい"> 大</p>
-<p><input type="radio" name="q3" value="いいえ"> 中</p>
-<p><input type="radio" name="q3" value="どちらでもない"> 小</p>
-</p>
 
+
+
+<br>
+<br>
+<h2>サイズ</h2>
+<p>L<%= radio_button 'page', 'size', 'L', {} %>　</p>
+<p>M<%= radio_button 'page', 'size', 'M', {}  %>　</p>
+<p>S<%= radio_button 'page', 'size', 'S', {} %>　</p>
+<HR size=1 color="green">
+<p>未選択<%= radio_button 'page', 'size' , "", {checked: true} %></p>
+
+
+</p>
+  <%= submit_tag '　送信する　' %>
+
+
+ 
+
+<% end %>

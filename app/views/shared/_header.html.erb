@@ -1,4 +1,4 @@
-<%= image_tag("RentalClothes.png", size: "420x130", alt: "RentalClothes") %>
+<%= link_to image_tag("RentalClothes.png", size: "420x130", alt: "RentalClothes"), :root %>
 
 <% if current_user %>
 <p class="user">
@@ -10,11 +10,14 @@
 
 <div class="menubar">
 <%= menu_link_to "TOP", :root %>
-&nbsp;|&nbsp; <%= menu_link_to "予約", "#" %>
+&nbsp;|&nbsp; <%= menu_link_to "予約", new_reservation_path %>
+<% if current_user then %>
+&nbsp;|&nbsp; <%= menu_link_to "マイページ", :account %>
+&nbsp;|&nbsp; <%= menu_link_to "カート", carts_path %>
+<% end %>
 &nbsp;|&nbsp; <%= menu_link_to "管理者", :admin_login %>
 &nbsp;|&nbsp; <%= menu_link_to "スタッフ", :staff_login %>
 &nbsp;|&nbsp; <%= menu_link_to "問い合わせ先", "#" %>
-&nbsp;|&nbsp; <%= menu_link_to "マイページ", '#' %>
-&nbsp;|&nbsp; <%= menu_link_to "カート", "#" %>
+
 
 </div>

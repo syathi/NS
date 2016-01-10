@@ -11,6 +11,5 @@ town = %w(V W X Y Z)
 		sendDay: day - 7 + idx,
 		sendAdress: "#{prefecture[idx % 4]}県#{city[idx % 3]}市#{town[idx % 5]}町",
 		isSend: idx < 6 ? true : false
-			
 	)
 end

@@ -13,11 +13,21 @@ class Admin < ActiveRecord::Base
 		@password = val
 	end
 
+
 	class << self
 		def authenticate(password)
 			admin = Admin.find(1)
 			#ハッシュ化したパスワードが存在して且つ、ハッシュ化したパスのキーが入力された内容と一致した場合
 			if(admin.adminPass.present? && BCrypt::Password.new(admin.adminPass) == password)then
+				admin
+			else
+				nil
+			end
+		end
+
+		def check_secret_ques(secret_ques, secret_ans)
+			admin = Admin.find(1)
+			if(admin.secretQues == secret_ques && admin.secretAns == secret_ans)then
 				admin
 			else
 				nil
