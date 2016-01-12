@@ -6,7 +6,6 @@ class ClothesController < ApplicationController
   end
 
   def show
-    @reservations = Reservation.where("isRent = true")
     @clothe = Clothe.find(params[:id])
     if params[:format].in?(["jpg", "png", "gif"])
       send_image

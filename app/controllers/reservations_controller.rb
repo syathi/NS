@@ -55,6 +55,14 @@ class ReservationsController < ApplicationController
 
   # 予約キャンセル
   def cansel
+    @rsv = Reservation.find(params[:id])
+    @clothe = Clothe.find(@rsv.clothesId)
+    @clothe.update({:isLent => false})
+    @rsv.destroy
+    respond_to do |format|
+      format.html { redirect_to :account, notice: 'キャンセルしました' }
+      format.json { head :no_content }
+    end
   end
 
   #未返却商品一覧

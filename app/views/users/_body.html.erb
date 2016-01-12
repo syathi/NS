@@ -43,3 +43,26 @@
  
  
 </table>
+
+<table>
+  <thead>予約情報</thead>
+  <% @rsv.each do |r| %>
+  <tr>
+    <th>商品番号</th>
+    <td> <%= r.clothesId %></td>
+  </tr>
+  <tr>
+    <th>発送予定日</th>
+    <td> <%= r.sendDay %></td>
+  </tr>
+  <tr>
+    <th>返却予定日</th>
+    <td> <%= r.returnDay %></td>
+  </tr>
+    <% if r.sendDay < Time.now %>
+      <tr><td><%= link_to "キャンセル", cansel_reservation_path(r.id), method: :delete %></td></tr>
+    <% elsif r.isSend %>
+      <tr><td><p>発送済み</p></td></tr>
+    <% end %>
+  <% end %>
+</table>
