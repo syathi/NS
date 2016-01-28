@@ -15,15 +15,18 @@ class ClothesController < ApplicationController
   end
 
   def new
+    
     @clothe = Clothe.new
+    @clothe.build_images
   end
 
   def edit
+    @clothe.build_images unless @clothe.images
   end
  
   def create
     @clothe = Clothe.new(clothe_params)
-
+    #binding.pry
     respond_to do |format|
       if @clothe.save
         format.html { redirect_to @clothe, notice: 'clothe was successfully created.' }
@@ -78,7 +81,10 @@ class ClothesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clothe_params
-      params[:clothe].permit(:name, :sex, :size, :color, :category1, :category2, :state, :value, :note, :recommend, :isLent)
+      attrs = [:name, :sex, :size, :color, :category1, :category2, :state, :value, :note, :recommend, :isLent, :confirming]
+      attrs << { images_attributes: [:_destroy, :id, :uploaded_image]}
+      params[:clothe].permit(attrs)
+
     end
 
     def send_image

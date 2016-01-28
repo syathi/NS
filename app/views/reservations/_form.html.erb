@@ -1,64 +1,96 @@
+<% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this clothe from being saved:</h2>
 
+      <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
 
 <table class="attr">
- <%= form.hidden_field :userId, :value => current_user.id %>
+  <%= form.hidden_field :userId, :value => current_user.id %>
+  <%= form.hidden_field :user_id, :value => current_user.id %>
 
-  <!--<div class="field">
-    <%= form.label :userId %><br>
-    <%= form.number_field :userId %>
-  </div>
-  <div class="field">
-    <%= form.label :clothesId %><br>
-    <%= form.number_field :clothesId %>
-  </div>-->
-   <span style="display:none;"><%= clothe_id = "" %></span>
- <% @carts.each do |cart| %>
-     
+<!--
+    <div class="field">
+      <%= form.label :userId %><br>
+      <%= form.number_field :userId %>
+    </div>
+    <div class="field">
+      <%= form.label :clothesId %><br>
+      <%= form.number_field :clothesId %>
+    </div>
+    <div class="field">
+      <%= form.label :user_id %><br>
+      <%= form.number_field :user_id %>
+    </div>
+    <div class="field">
+      <%= form.label :clothe_id %><br>
+      <%= form.number_field :clothe_id %>
+    </div>
+-->
+  <% clothe_id = "" %>
+  <thead>
+    <th>画像</th>
+    <th>名前</th>
+    <th>性別</th>
+    <th>サイズ</th>
+    <th>色</th>
+    <th>カテゴリ</th>
+    <th>シチュエーション</th>
+    <th>価格</th>
+    <th>備考</th>
+  </thead>
+  <tbody>
+  <% @carts.each do |cart| %> 
     <!--<td><%=cart.clothe_id%></td>
     <td><%=cart.user_id%></td>-->
     <%clothe = Clothe.find_by(id: cart.clothe_id)%>
-     <% if cart.user_id ==  User.find_by(name: current_user.name).id %>
-     <tr>
-    <th>画像</th>
-    <td><%= clothe_image_tag clothe, width: 96 %></td>
-    </tr>
-
-        <td><%= clothe.name %></td>
-        <td><%= clothe.sex %></td>
-        <td><%= clothe.size %></td>
-        <td><%= clothe.color %></td>
-        <td><%= clothe.category1 %></td>
-        <td><%= clothe.category2 %></td>
-        <td><%= clothe.state %></td>
-        <td><%= clothe.value %></td>
-        <td><%= clothe.note %></td>
-             <% if clothe_id != "" %>
-             <span style="display:none;"><%= clothe_id +=" " %></span>
-             <% end %>
-             <span style="display:none;"><%= clothe_id +=clothe.id.to_s %></span>
+    <% if cart.user_id ==  User.find_by(name: current_user.name).id %>
+      <td><%= clothe_image_tag clothe, width: 96 %></td>
+      <td><%= clothe.name %></td>
+      <td><%= clothe.sex %></td>
+      <td><%= clothe.size %></td>
+      <td><%= clothe.color %></td>
+      <td><%= clothe.category1 %></td>
+      <td><%= clothe.category2 %></td>
+      <td><%= clothe.value %></td>
+      <td><%= clothe.note %></td>
+      <% if clothe_id != "" %>
+        <span style="display:none;"><%= clothe_id +=" " %></span>
+      <% end %>
+      <span style="display:none;"><%= clothe_id +=clothe.id.to_s %></span>
              
-      <tr>
-         <% end %>
-        <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
 
-<%= form.hidden_field :clothesId, :value => clothe_id%>
+  <%= form.hidden_field :clothesId, :value => clothe_id%>
+  <%= form.hidden_field :clothe_id, :value => clothe_id%>
 
- <div class="field">
-    <%= form.label :returnDay %><br>
+  <div class="field">
+    <%= form.label "発送希望日" %><br>
+    <%= form.date_select :sendDay %>
+  </div>
+    <div class="field">
+    <%= form.label "返却予定日" %><br>
     <%= form.date_select :returnDay %>
   </div>
   <div class="field">
-    <%= form.label :sendDay %><br>
-    <%= form.date_select :sendDay %>
-  </div>
-  <div class="field">
-    <%= form.label :sendAdress %><br>
+    <%= form.label "届け先住所" %><br>
+    <% @reservation.sendAdress = current_user.adress %>
     <%= form.text_field :sendAdress %>
   </div>
 
   <div class="actions">
-<p><%= form.submit %></p>
-</div>
+    <p><%= form.submit "送信" %></p>
+  </div>
 
-  </table>
+</table>
+
+
 

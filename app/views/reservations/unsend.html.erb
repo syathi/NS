@@ -1,3 +1,4 @@
+<%= notice %>
 <h2>未発送商品一覧</h2>
 <table>
   <thead>
@@ -12,8 +13,12 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
-        <td><%= reservation.userId %></td>
-        <td><%= reservation.clothesId %></td>
+        <td><%= User.find(reservation.userId).name %></td>
+        <td><%= Clothe.find(reservation.clothesId).name %></td>
+        <!--余裕があったらこう直す
+        <td><#%= reservation.user.name %></td>
+        <td><#%= reservation.clothe.name %></td>
+        -->
         <td><%= reservation.returnDay %></td>
         <td><%= link_to '発送する', forword_reservation_path(reservation), data:{ confirm:	 "発送します" } %></td>
       </tr>

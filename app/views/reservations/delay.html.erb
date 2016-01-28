@@ -14,8 +14,12 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
-        <td><%= reservation.userId %></td>
-        <td><%= reservation.clothesId %></td>
+        <td><%= User.find(reservation.userId).name %></td>
+        <td><%= Clothe.find(reservation.clothesId).name %></td>
+        <!--余裕があったらこう直す
+        <td><#%= reservation.user.name %></td>
+        <td><#%= reservation.clothe.name %></td>
+        -->
         <td><%= reservation.returnDay %></td>
         <td><%= link_to 'アカウント凍結', freeze_user_path(reservation.userId), data:{ confirm:	 "本当に凍結させますか?" } %></td> 
       </tr>

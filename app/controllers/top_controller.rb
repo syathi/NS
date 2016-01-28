@@ -1,5 +1,6 @@
 class TopController < ApplicationController
   def index
+    @clothes = Clothe.where("recommend = ?", true)
   end
 
   def admin_login
@@ -14,6 +15,7 @@ class TopController < ApplicationController
   	@sex = search_params[:sex]
   	@size = search_params[:size]
   	@not_exist = true
+    logger.debug @sex
   	#redirect_to "top/_search2"
   end
 

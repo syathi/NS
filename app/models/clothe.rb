@@ -1,8 +1,16 @@
 class Clothe < ActiveRecord::Base
 	  has_one :reservation　
+    has_one :history
   	belongs_to :cart
   	has_one :images, class_name:"ClotheImage",dependent: :destroy
   	accepts_nested_attributes_for :images, allow_destroy: true
+
+  validates :name, presence: true
+  validates :sex, presence: true
+  validates :size, presence: true
+  validates :color, presence: true
+  validates :value, presence: true
+  validates :value, numericality: { only_integer: true, greater_than: 0}
 
 	validates_acceptance_of :confirming
 	after_validation :check_confirming

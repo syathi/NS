@@ -20,20 +20,20 @@
    <tr>
     <th>秘密の質問</th>
 
-     <% if @user.secretques == 1 then %>
+     <% case @user.secretques %>
+      <% when "1" %>
         <td><%= "好きな食べ物" %></td>
-     <% elsif @user.secretques == 2 then %>
+      <% when "2" %>
         <td><%= "好きな場所" %></td>
-     <% elsif @user.secretques == 3 then %>
+      <% when "3" %>
         <td><%= "好きな映画" %></td>
-     <% elsif @user.secretques == 4 then %>
+      <% when "4" %>
         <td><%= "ペットの名前" %></td>
-     <% elsif @user.secretques == 5 then  %>
+      <% when "5" %>
         <td><%= "好きな本" %></td>
-     <% else %>
+      <% else %>
         <td><%= @user.secretques %></td>
      <% end %>
-   
     
   </tr>
   <tr>
@@ -43,26 +43,25 @@
  
  
 </table>
-
+<strong>予約情報</strong>
 <table>
-  <thead>予約情報</thead>
-  <% @rsv.each do |r| %>
-  <tr>
+  <thead>
     <th>商品番号</th>
-    <td> <%= r.clothesId %></td>
-  </tr>
-  <tr>
+    <th>商品名</th>
     <th>発送予定日</th>
-    <td> <%= r.sendDay %></td>
-  </tr>
-  <tr>
     <th>返却予定日</th>
+  </thead>
+  <% @rsv.each do |r| %>
+  <tbody>
+    <td> <%= r.clothesId %></td>
+    <td> <%= r.clothe.name %></td>
+    <td> <%= r.sendDay %></td>
     <td> <%= r.returnDay %></td>
-  </tr>
-    <% if r.sendDay < Time.now %>
-      <tr><td><%= link_to "キャンセル", cansel_reservation_path(r.id), method: :delete %></td></tr>
-    <% elsif r.isSend %>
-      <tr><td><p>発送済み</p></td></tr>
+    <% if r.isSend %>
+      <td>発送済み</td>
+    <% else %>
+      <td><%= link_to "キャンセル", cansel_reservation_path(r.id), method: :delete %></td>
     <% end %>
+  </tbody>
   <% end %>
 </table>

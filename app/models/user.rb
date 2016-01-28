@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-	belongs_to :reservation
+	belongs_to :history
+	has_many :reservation
 	belongs_to :cart
-	validates :password, presence: { on: :create },
+	validates :password, presence: { on: :create ,strict: true},
 		confirmation: {allow_blank: true}
 		
 	attr_accessor :password, :password_conrirmation

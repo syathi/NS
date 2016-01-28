@@ -16,6 +16,19 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.fields_for :images do |imgf| %>
+      <%= imgf.label "画像" %></br>
+      <%= imgf.file_field :uploaded_image %>
+      <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
+      <div>
+        <%= clothe_image_tag @clothe, width: 60 %>
+        <%= imgf.check_box :_destroy %>
+        <%= imgf.hidden_field :id %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field">
     <%= f.label "性別" %><br>
     <%= f.label "男性" %><%= f.radio_button :sex, 0 %>
     <%= f.label "女性" %><%= f.radio_button :sex, 1 %>
@@ -36,15 +49,15 @@
     <%= f.text_field :color %>
   </div>
   <div class="field">
-    <%= f.label "カテゴリ1(季節)" %><br>
-    <%= f.label "春" %><%= f.radio_button :category1, "春" %>
-    <%= f.label "夏" %><%= f.radio_button :category1, "夏" %>
-    <%= f.label "秋" %><%= f.radio_button :category1, "秋" %>
-    <%= f.label "冬" %><%= f.radio_button :category1, "冬" %>
+    <%= f.label "カテゴリー" %></br>
+    <% category = ["ドレス", "浴衣", "スーツ", "コート"] %>
+    <%= f.select :category1, category %>
+    
   </div>
   <div class="field">
-    <%= f.label "カテゴリ2(シチュエーション)" %><br>
-    <%= f.text_field :category2 %>
+    <%= f.label "シチュエーション" %><br>
+    <% situation = ["結婚式", "職場", "七五三", "葬式"] %>
+    <%= f.select :category2, situation %>
   </div>
   <div class="field">
     <%= f.label "価格" %><br>
@@ -57,4 +70,5 @@
   <div class="actions">
     <%= f.submit "送信" %>
   </div>
+
 <% end %>

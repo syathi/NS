@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160105172611) do
   end
 
   create_table "histories", force: :cascade do |t|
+    t.integer  "clothe_id"
+    t.integer  "user_id"
     t.integer  "userId"
     t.integer  "clothesId"
     t.date     "returnDay"
@@ -72,6 +74,9 @@ ActiveRecord::Schema.define(version: 20160105172611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "histories", ["clothe_id"], name: "index_histories_on_clothe_id"
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id"
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "clothe_id"

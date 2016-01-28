@@ -16,7 +16,8 @@
 
 /* ページ全体 */
 
-body {
+html,body {
+  height: 100%;
   background-color: white;
   color: black;
   margin: 0; padding: 0;
@@ -64,12 +65,14 @@ div#header {
 
 /* フッター */
 div#footer {
+  position:relative;
   clear: both;
   font: 11px Verdana;
   color: #888;
   padding: 8px 0;
-  border-top: 4px solid #6bb;
+  border-top: 4px solid #393939;
   text-align: center;
+   bottom: 0;
 }
 
 /* メニューバー */

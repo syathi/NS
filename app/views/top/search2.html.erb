@@ -1,15 +1,28 @@
-<%= render "shared/header" %>
+
+  <tr>
+    <div id="sidebar"><%= render "shared/sidebar" %></div>
+    <td><%= render "shared/search_form" %></td>
+    <% unless current_user then %>
+    <td><div id="login_form"><%= render "shared/login_form" %></div></td>
+    <% end %>
+  </tr>
+
 <% if @params then%>
 <h2>検索の結果</h2>
-
 <table>
 <tbody>
   <% @clothes.each do |clothe| %>
-    <% if (clothe.category1==@category1 or @category1== "") and (clothe.category2 == @category2  or @category2== "")and (clothe.size == @size or @size== "")and (clothe.sex == @sex or @sex== "") %>
-      <tr><td><%= link_to(clothe_image_tag(clothe, width: 96), clothe_path(clothe)) %></td></tr>
-      <tr><td><%= link_to(clothe.name, clothe_path(clothe)) %></td></tr>
-      <!--<tr><td><#%= link_to "予約する", new_reservation_path(clothe: clothe) %></td>
-      	  <td><#%= link_to "カートに入れる", new_cart_path(clothe: clothe)%></tr>-->
+
+    <% if (clothe.category1==@category1 or @category1== "") and (clothe.category2 == @category2  or @category2== "")and (clothe.size == @size or @size== "")and (clothe.sex.to_i == @sex.to_i or @sex== "") %>
+      <tr class="imagebox"><td><p class="image">
+        <%= link_to(clothe_image_tag(clothe, width: 96), clothe_path(clothe)) %>
+      </p>
+      <p class="caption"><%= link_to(clothe.name, clothe_path(clothe)) %></p>
+      <p class="caption"><%= clothe.note %></p>
+      <% if clothe.isLent %>
+        <p class="caption">貸出中</p>
+      <% end %>
+      </td></tr>
       <% @not_exist = false %>
     <% end %>  
   <% end %>
@@ -20,3 +33,34 @@
   <p>見つかりませんでした</p>
 <% end %>
 <!-- -->
+<style type="text/css">
+
+  
+    tr.imagebox {
+      position: relative;
+      top: 0px;
+       left: 50px;
+     　
+       border: 1px dashed #0000cc; /* 枠線 */
+       background-color: #efffff;  /* 背景色 */
+       width: 140px;
+       height: 180px;               /* 横幅 */
+       float: left;                /* 左に配置 */
+       margin: 10px;                /* 周囲の余白 */
+
+
+    }
+    p.image, p.caption {
+       text-align: center; /* 中央寄せ */
+       margin: 5px;        /* 余白・間隔 */
+    }
+    p.caption {
+       font-size: 80%;     /* 文字サイズ */
+       color: darkblue;    /* 文字色 */
+    }
+
+    p.exp {
+      clear: left;       /* 回り込みを解除 */
+    }
+
+  </style>

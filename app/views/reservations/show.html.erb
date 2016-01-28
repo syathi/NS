@@ -1,16 +1,9 @@
-<%= render "shared/header" %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>ユーザ:</strong>
-  <%= @reservation.userId %>
+  <strong>商品名:</strong>
+  <%= @reservation.clothe.name %>
 </p>
-
-<p>
-  <strong>商品:</strong>
-  <%= @reservation.clothesId %>
-</p>
-
 <p>
   <strong>返却予定日:</strong>
   <%= @reservation.returnDay %>
@@ -26,5 +19,5 @@
   <%= @reservation.sendAdress %>
 </p>
 
-<!--<#%= link_to '編集', edit_reservation_path(@reservation) %> |-->
-<%= link_to 'index', reservations_path %>
+<!--<#%= link_to '編集', edit_reservation_path(@reservation) %> |
+<#%= link_to 'index', reservations_path %>-->

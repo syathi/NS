@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
 	before_action :set_admin, only: [:edit_pass, :update, :show, :secret_ques, :secret_ques_check, :change_pass, :update_pass]
+  before_aciton :admin_login_required
 
   def show
   end

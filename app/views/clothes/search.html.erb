@@ -1,4 +1,13 @@
-<%= render "shared/header" %>
+<table>
+  <tr>
+    <div id="sidebar"><%= render "shared/sidebar" %></div>
+    <td><%= render "shared/search_form" %></td>
+    <% unless current_user then %>
+    <td><div id="login_form"><%= render "shared/login_form" %></div></td>
+    <% end %>
+  </tr>
+</table>
+
 <% if !@clothes.present? && @word.present? then%>
 	<p> <%= @word %> は見つかりませんでした</p>
 <% end %>
@@ -8,11 +17,48 @@
 <table>
 <tbody>
   <% @clothes.each do |clothe| %>
-      <tr><td><%= clothe_image_tag clothe, width: 96 %></td></tr>
-      <tr><td><%= clothe.name %></td></tr>
-      <!--<tr><td><#%= link_to "予約する", new_reservation_path(clothe: clothe) %></td>
-      	  <td><#%= link_to "カートに入れる", new_cart_path(clothe: clothe)%></tr> -->
+      <tr class="imagebox"><td>
+      		<p class="image"><%= clothe_image_tag clothe, width: 96 %></p>
+      		<p class="caption"><%= link_to clothe.name, clothe_path(clothe) %></p>
+          <p class="caption"><%= clothe.note %></p>
+          <% if clothe.isLent then%>
+              <p class="caption">貸出中</p>
+          <% end %>
+      </td></tr>
   <% end %>
 </tbody>
 </table>
 <% end %>
+
+<style type="text/css">
+
+  
+    tr.imagebox {
+      position: relative;
+      top: 0px;
+       left: 50px;
+     　
+       border: 1px dashed #0000cc; /* 枠線 */
+       background-color: #efffff;  /* 背景色 */
+       width: 140px;               /* 横幅 */
+       height: 180px;
+       float: left;                /* 左に配置 */
+       margin: 10px;                /* 周囲の余白 */
+
+
+    }
+    p.image, p.caption {
+       text-align: center; /* 中央寄せ */
+       margin: 5px;        /* 余白・間隔 */
+    }
+    p.caption {
+       font-size: 80%;     /* 文字サイズ */
+       color: darkblue;    /* 文字色 */
+    }
+
+    p.exp {
+      clear: left;       /* 回り込みを解除 */
+    }
+
+  </style>
+
